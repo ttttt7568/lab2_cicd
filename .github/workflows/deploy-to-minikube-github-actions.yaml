@@ -21,21 +21,10 @@ jobs:
           docker images                          
     - name: Deploy to minikube
       run:
-        kubectl apply -f k8s-node-app.yaml
-    - name: check pod
-      run:
-        kubectl get pods        
-    - name: ssh
-      run: |
-          export SHELL=/bin/bash
-          eval $(minikube -p minikube docker-env)
-          docker ps
+        kubectl apply -f k8s-node-app.yaml     
     - name: sleep
       run:
-        sleep 30
-    - name: check pod2
-      run:
-        kubectl get pods 
+        sleep 30 #Pod isn't created in 1 second and needs a little time
     - name: Test service URLs
       run: |
           minikube service list
