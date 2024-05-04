@@ -22,6 +22,9 @@ jobs:
     - name: Deploy to minikube
       run:
         kubectl apply -f k8s-node-app.yaml
+    - name: check pod
+      run:
+        kubectl get pods        
     - name: ssh
       run: |
           export SHELL=/bin/bash
@@ -29,6 +32,5 @@ jobs:
           docker ps
     - name: Test service URLs
       run: |
-          kubectl get pods
           minikube service list
           minikube service nodejs-app --url
