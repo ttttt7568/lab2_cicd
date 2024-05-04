@@ -30,6 +30,12 @@ jobs:
           export SHELL=/bin/bash
           eval $(minikube -p minikube docker-env)
           docker ps
+    - name: sleep
+      run:
+        sleep 30
+    - name: check pod2
+      run:
+        kubectl get pods 
     - name: Test service URLs
       run: |
           minikube service list
