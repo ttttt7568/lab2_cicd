@@ -18,13 +18,13 @@ jobs:
           eval $(minikube -p minikube docker-env)
           docker build -f ./Dockerfile -t devopshint/node-app:latest .
           echo -n "verifying images:"
-          docker images         
+          docker images        
+          minikube ssh
+          ls
+          docker image ls           
     - name: Deploy to minikube
       run:
         kubectl apply -f k8s-node-app.yaml
-        minikube ssh
-        ls
-        docker image ls
     - name: Test service URLs
       run: |
           minikube service list
